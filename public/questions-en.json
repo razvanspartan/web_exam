@@ -139,7 +139,6 @@
     ],
     "correct": [
       "In the command line using php.exe/php",
-      "By the operating system's command interpreter",
       "By a module within the web server"
     ]
   },

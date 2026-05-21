@@ -1,6 +1,6 @@
 # Quiz Application
 
-This is a quiz application that asks the user a series of multiple choice questions, for Operating Systems exam. Can be used either as a Python script, or a React app.
+This is a quiz application that asks the user a series of multiple choice questions, for Web Programming exam. Can be used either as a Python script, or a React app.
 
 ##### IMPORTANT NOTE: Some answers may not be correct, so please check them while using this application, and if you find any mistakes, please let me know.
 

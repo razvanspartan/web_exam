@@ -893,9 +893,8 @@ function App() {
               <div>
                 <h3 className="text-[17px] mb-2">Navigation</h3>
                 <ul className="space-y-2 text-[15px] text-[var(--ios-text-secondary)]">
-                  <li>↑/↓ - Navigate between answers</li>
-                  <li>Tab/Shift+Tab - Cycle through answers</li>
-                  <li>Enter - Submit answer or go to next question</li>
+                  <li>↑/↓ or Tab/Shift+Tab - Navigate between answers</li>
+                  <li>Enter - Submit answer</li>
                   <li>Space - Select/deselect focused answer</li>
                   <li>
                     {navigator.platform.includes("Mac") ? "⌘" : "Ctrl"} + K -

@@ -155,19 +155,6 @@
     ]
   },
   {
-    "question": "Pentru a redirectiona automat browser-ul spre un nou URL, server-ul poate:",
-    "answers": [
-      "raspunde cu cod 1xx si header Location",
-      "trimite HTML cu link si simuleaza click din JavaScript",
-      "include noul URL pe back-end cu include",
-      "folosi JavaScript window.location"
-    ],
-    "correct": [
-      "trimite HTML cu link si simuleaza click din JavaScript",
-      "folosi JavaScript window.location"
-    ]
-  },
-  {
     "question": "Cum se poate interschimba valoarea a doua variabile $a si $b in PHP?",
     "answers": [
       "list($a, $b) = ($b, $a);",
@@ -265,30 +252,6 @@
     ],
     "correct": [
       "$.ajax, $.get, load"
-    ]
-  },
-  {
-    "question": "In PHP return este folosit pentru:",
-    "answers": [
-      "a termina scriptul curent si a reda controlul scriptului care l-a inclus",
-      "a trimite raspunsul complet clientului",
-      "a trimite clientului un anumit raspuns",
-      "a termina executia unei functii"
-    ],
-    "correct": [
-      "a termina scriptul curent si a reda controlul scriptului care l-a inclus",
-      "a termina executia unei functii"
-    ]
-  },
-  {
-    "question": "Elementul <th> trebuie folosit pentru:",
-    "answers": [
-      "centrarea si bold-area continutului unei celule",
-      "definirea unei celule de header a tabelului",
-      "definirea unui nou rand in tabel"
-    ],
-    "correct": [
-      "definirea unei celule de header a tabelului"
     ]
   },
   {
@@ -1050,42 +1013,6 @@
     ]
   },
   {
-    "question": "Care dintre următoarele cuvinte/caractere nu sunt rezervate în JavaScript și se pot folosi ca nume de variabile?",
-    "answers": [
-      "this, a, b",
-      "with, a, b",
-      "$, a, b",
-      "let, a, b"
-    ],
-    "correct": [
-      "$, a, b"
-    ]
-  },
-  {
-    "question": "Pentru a centra un element cu display:block într-un container se folosește:",
-    "answers": [
-      "align:center",
-      "margin:0 auto",
-      "align:middle",
-      "text-align:center"
-    ],
-    "correct": [
-      "margin:0 auto"
-    ]
-  },
-  {
-    "question": "Care metode HTTP nu presupun trimiterea de conținut după antete într-un răspuns HTTP?",
-    "answers": [
-      "GET",
-      "PUT",
-      "POST",
-      "HEAD"
-    ],
-    "correct": [
-      "HEAD"
-    ]
-  },
-  {
     "question": "Care dintre următoarele afirmații sunt adevărate?",
     "answers": [
       "Definițiile de stil interne au prioritate înaintea celor externe",
@@ -1095,17 +1022,6 @@
     "correct": [
       "O definiție de stil aplicată clasei are prioritate față de selectorul de tag",
       "Un stil inline suprascrie un selector bazat pe id"
-    ]
-  },
-  {
-    "question": "Care reprezintă proprietăți membre ale XMLHttpRequest?",
-    "answers": [
-      "readyState, response, responseText, status",
-      "state, request, response, status",
-      "readyState, request, response, status"
-    ],
-    "correct": [
-      "readyState, response, responseText, status"
     ]
   },
   {
@@ -1128,31 +1044,6 @@
     ],
     "correct": [
       "Resursa nu a fost găsită"
-    ]
-  },
-  {
-    "question": "Care este forma corectă pentru tag-ul img în XHTML?",
-    "answers": [
-      "<img src='poza.jpg'/>",
-      "<img src='poza.jpg'></img>",
-      "<img src='poza.jpg'>"
-    ],
-    "correct": [
-      "<img src='poza.jpg'/>"
-    ]
-  },
-  {
-    "question": "Cum se introduc comentarii într-un script PHP?",
-    "answers": [
-      "//",
-      "/* ... */",
-      "#",
-      "<!-- -->"
-    ],
-    "correct": [
-      "//",
-      "/* ... */",
-      "#"
     ]
   },
   {

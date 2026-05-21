@@ -155,19 +155,6 @@
     ]
   },
   {
-    "question": "To automatically redirect the browser to a new URL, the server can:",
-    "answers": [
-      "respond with a 1xx code and Location header",
-      "send HTML with a link and simulate a click from JavaScript",
-      "include the new URL on the back-end with include",
-      "use JavaScript window.location"
-    ],
-    "correct": [
-      "send HTML with a link and simulate a click from JavaScript",
-      "use JavaScript window.location"
-    ]
-  },
-  {
     "question": "How can the value of two variables $a and $b be swapped in PHP?",
     "answers": [
       "list($a, $b) = ($b, $a);",
@@ -267,30 +254,7 @@
       "$.ajax, $.get, load"
     ]
   },
-  {
-    "question": "In PHP, return is used for:",
-    "answers": [
-      "ending the current script and returning control to the script that included it",
-      "sending the complete response to the client",
-      "sending a specific response to the client",
-      "ending the execution of a function"
-    ],
-    "correct": [
-      "ending the current script and returning control to the script that included it",
-      "ending the execution of a function"
-    ]
-  },
-  {
-    "question": "The <th> element should be used for:",
-    "answers": [
-      "centering and bolding the content of a cell",
-      "defining a table header cell",
-      "defining a new row in the table"
-    ],
-    "correct": [
-      "defining a table header cell"
-    ]
-  },
+
   {
     "question": "JavaScript injections are due to:",
     "answers": [
@@ -1050,42 +1014,6 @@
     ]
   },
   {
-    "question": "Which of the following words/characters are not reserved in JavaScript and can be used as variable names?",
-    "answers": [
-      "this, a, b",
-      "with, a, b",
-      "$, a, b",
-      "let, a, b"
-    ],
-    "correct": [
-      "$, a, b"
-    ]
-  },
-  {
-    "question": "To center an element with display:block within a container you use:",
-    "answers": [
-      "align:center",
-      "margin:0 auto",
-      "align:middle",
-      "text-align:center"
-    ],
-    "correct": [
-      "margin:0 auto"
-    ]
-  },
-  {
-    "question": "Which HTTP methods do not involve sending content after headers in an HTTP response?",
-    "answers": [
-      "GET",
-      "PUT",
-      "POST",
-      "HEAD"
-    ],
-    "correct": [
-      "HEAD"
-    ]
-  },
-  {
     "question": "Which of the following statements are true?",
     "answers": [
       "Internal style definitions take precedence over external ones",
@@ -1095,17 +1023,6 @@
     "correct": [
       "A style definition applied to a class takes precedence over a tag selector",
       "An inline style overrides an id-based selector"
-    ]
-  },
-  {
-    "question": "What are member properties of XMLHttpRequest?",
-    "answers": [
-      "readyState, response, responseText, status",
-      "state, request, response, status",
-      "readyState, request, response, status"
-    ],
-    "correct": [
-      "readyState, response, responseText, status"
     ]
   },
   {
@@ -1128,31 +1045,6 @@
     ],
     "correct": [
       "The resource was not found"
-    ]
-  },
-  {
-    "question": "What is the correct form for the img tag in XHTML?",
-    "answers": [
-      "<img src='poza.jpg'/>",
-      "<img src='poza.jpg'></img>",
-      "<img src='poza.jpg'>"
-    ],
-    "correct": [
-      "<img src='poza.jpg'/>"
-    ]
-  },
-  {
-    "question": "How are comments introduced in a PHP script?",
-    "answers": [
-      "//",
-      "/* ... */",
-      "#",
-      "<!-- -->"
-    ],
-    "correct": [
-      "//",
-      "/* ... */",
-      "#"
     ]
   },
   {

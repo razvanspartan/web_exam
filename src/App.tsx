@@ -6,7 +6,7 @@ import {
   Sun,
   Settings2,
   HelpCircle,
-  Globe 
+  Globe
 } from "lucide-react";
 import "./ios.css";
 import "./App.css";
@@ -155,8 +155,8 @@ function App() {
 
   const handleAnswerSelect = (answer: string) => {
     if (!isAnswerSubmitted) {
-      setSelectedAnswers(prev => 
-        prev.includes(answer) 
+      setSelectedAnswers(prev =>
+        prev.includes(answer)
           ? prev.filter(a => a !== answer)
           : [...prev, answer]
       );
@@ -197,7 +197,7 @@ function App() {
   };
 
   const handleNext = () => {
-    const maxQuestions = currentSession 
+    const maxQuestions = currentSession
       ? currentSession.totalQuestions
       : numberOfQuestions === "all"
         ? questions.length
@@ -246,11 +246,11 @@ function App() {
           // Submit answer or go to next question
           if (isAnswerSubmitted) {
             handleNext();
-                      } else if (
-              (currentQuestion.answers.length > 0 &&
-                selectedAnswers.length > 0) ||
-              (currentQuestion.answers.length === 0 && textAnswer.length > 0)
-            ) {
+          } else if (
+            (currentQuestion.answers.length > 0 &&
+              selectedAnswers.length > 0) ||
+            (currentQuestion.answers.length === 0 && textAnswer.length > 0)
+          ) {
             handleSubmit();
           }
           break;
@@ -342,19 +342,20 @@ function App() {
   const cardClass =
     "bg-[var(--ios-card-background)] border border-[var(--ios-border)]";
 
-  const createNewSession = (questionCount: number, isTest: boolean = false) => {
-    let questionIds: number[];
-    
+  const createNewSession = (questionCount: number, isTest: boolean = false, shuffle: boolean = true) => {
     const allIndices = Array.from({ length: questions.length }, (_, i) => i);
-    questionIds = [];
     const count = Math.min(questionCount, questions.length);
 
-    for (let i = allIndices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
+    let questionIds: number[];
+    if (shuffle) {
+      for (let i = allIndices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
+      }
+      questionIds = allIndices.slice(0, count);
+    } else {
+      questionIds = allIndices.slice(0, count);
     }
-
-    questionIds = allIndices.slice(0, count);
 
     const newSession: Session = {
       id: Date.now().toString(),
@@ -391,7 +392,6 @@ function App() {
     setAnsweredQuestions(new Set(session.answeredQuestions));
   };
 
-  // Update the current session progress
   useEffect(() => {
     if (currentSession) {
       const updatedSession = {
@@ -408,15 +408,13 @@ function App() {
     }
   }, [currentQuestionIndex, score, answeredQuestions, gameOver]);
 
-  // Add delete session function
   const deleteSession = (sessionId: string) => {
     setSessions((prev) => prev.filter((s) => s.id !== sessionId));
     if (currentSession?.id === sessionId) {
       setCurrentSession(null);
     }
   };
-  
-  // Add keyboard shortcut for command palette
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -429,28 +427,19 @@ function App() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Add command palette handler
   const handleQuestionSelect = (index: number) => {
-    if (!isViewMode) {
-      setPreviousQuestionIndex(currentQuestionIndex);
-    }
     setCurrentQuestionIndex(index);
     setSelectedAnswers([]);
     setTextAnswer("");
     setIsAnswerSubmitted(false);
-    setIsViewMode(true);
+    setIsViewMode(false);
   };
 
-  // Add handler for resuming practice
   const handleResumePractice = () => {
     setIsViewMode(false);
-    if (currentSession) {
-      if (previousQuestionIndex !== null) {
-        setCurrentQuestionIndex(previousQuestionIndex);
-        setPreviousQuestionIndex(null);
-      }
-    } else {
-      createNewSession(questions.length);
+    if (previousQuestionIndex !== null) {
+      setCurrentQuestionIndex(previousQuestionIndex);
+      setPreviousQuestionIndex(null);
     }
   };
 
@@ -472,7 +461,6 @@ function App() {
     const wrongCount = wrongAnswers.length;
     const correctCount = score;
 
-    // Add review mistakes interface
     if (showReview) {
       return (
         <div className={`${containerClass} flex flex-col items-center gap-4 p-4`}>
@@ -493,18 +481,17 @@ function App() {
               {wrongAnswers.map(([question, userAnswers], index) => (
                 <div key={index} className="p-4 rounded-[14px] bg-[var(--ios-background)] border border-[var(--ios-border)]">
                   <h3 className="text-[17px] font-medium mb-4">{question.question}</h3>
-                  
+
                   <div className="space-y-2">
                     {question.answers.map((answer, answerIndex) => (
                       <div
                         key={answerIndex}
-                        className={`p-3 rounded-[10px] text-[15px] ${
-                          question.correct.includes(answer)
-                            ? "bg-[var(--ios-green-light)] text-[var(--ios-green)] border border-[var(--ios-green)]"
-                            : userAnswers.includes(answer)
+                        className={`p-3 rounded-[10px] text-[15px] ${question.correct.includes(answer)
+                          ? "bg-[var(--ios-green-light)] text-[var(--ios-green)] border border-[var(--ios-green)]"
+                          : userAnswers.includes(answer)
                             ? "bg-[var(--ios-red-light)] text-[var(--ios-red)] border border-[var(--ios-red)]"
                             : "bg-[var(--ios-card-background)]"
-                        }`}
+                          }`}
                       >
                         <span className="font-medium">
                           {String.fromCharCode(97 + answerIndex)})
@@ -584,34 +571,26 @@ function App() {
                 Review Mistakes
               </button>
             )}
-            
+
             {currentSession?.isTest ? (
-              // Test completion options
               <>
                 <button
                   className="w-full py-3 rounded-[14px] bg-[var(--ios-blue-light)] text-[var(--ios-blue)]"
-                  onClick={() => {
-                    createNewSession(testQuestionCount, true);
-                  }}
+                  onClick={() => createNewSession(testQuestionCount, true, true)}
                 >
                   Take Test Again
                 </button>
                 <button
                   className="w-full py-3 rounded-[14px] bg-[var(--ios-green-light)] text-[var(--ios-green)]"
-                  onClick={() => {
-                    createNewSession(questions.length, false);
-                  }}
+                  onClick={() => createNewSession(questions.length, false, false)}
                 >
-                  Switch to Practice Mode
+                  Switch to Practice
                 </button>
               </>
             ) : (
-              // Practice completion options
               <button
                 className="w-full py-3 rounded-[14px] bg-[var(--ios-blue-light)] text-[var(--ios-blue)]"
-                onClick={() => {
-                  createNewSession(questions.length, false);
-                }}
+                onClick={() => createNewSession(questions.length, false, false)}
               >
                 Practice Again
               </button>
@@ -633,9 +612,8 @@ function App() {
           <div className="px-4 py-3 flex items-center justify-between border-b border-[var(--ios-border)]">
             <button
               onClick={handlePrevious}
-              className={`flex items-center text-[var(--ios-blue)] transition-opacity ${
-                currentQuestionIndex === 0 ? "opacity-50" : "opacity-100"
-              }`}
+              className={`flex items-center text-[var(--ios-blue)] transition-opacity ${currentQuestionIndex === 0 ? "opacity-50" : "opacity-100"
+                }`}
               disabled={currentQuestionIndex === 0}
             >
               <ChevronLeft className="w-5 h-5" />
@@ -686,27 +664,23 @@ function App() {
                       onFocus={() => setFocusedAnswerIndex(index)}
                       disabled={isAnswerSubmitted}
                       className={`w-full text-left py-3.5 px-5 rounded-[14px] text-[17px] transition-all outline-none
-                        ${
-                          selectedAnswers.includes(answer) &&
+                        ${selectedAnswers.includes(answer) &&
                           !isAnswerSubmitted
-                            ? "bg-[var(--ios-blue-light)] text-[var(--ios-blue)]"
-                            : "bg-[var(--ios-background)]"
-                        } ${
-                        isAnswerSubmitted &&
-                        currentQuestion.correct.includes(answer)
+                          ? "bg-[var(--ios-blue-light)] text-[var(--ios-blue)]"
+                          : "bg-[var(--ios-background)]"
+                        } ${isAnswerSubmitted &&
+                          currentQuestion.correct.includes(answer)
                           ? "bg-[var(--ios-green-light)] text-[var(--ios-green)]"
                           : ""
-                      } ${
-                        isAnswerSubmitted &&
-                        selectedAnswers.includes(answer) &&
-                        !currentQuestion.correct.includes(answer)
+                        } ${isAnswerSubmitted &&
+                          selectedAnswers.includes(answer) &&
+                          !currentQuestion.correct.includes(answer)
                           ? "bg-[var(--ios-red-light)] text-[var(--ios-red)]"
                           : ""
-                      } ${
-                        focusedAnswerIndex === index
+                        } ${focusedAnswerIndex === index
                           ? "ring-2 ring-[var(--ios-blue)] ring-offset-2"
                           : ""
-                      }`}
+                        }`}
                     >
                       {String.fromCharCode(97 + index)}) {answer}
                     </motion.button>
@@ -744,10 +718,9 @@ function App() {
                       onClick={handleSubmit}
                       disabled={selectedAnswers.length === 0}
                       className={`px-7 py-2.5 rounded-[14px] text-[17px] transition-all
-                        ${
-                          selectedAnswers.length === 0
-                            ? "bg-[var(--ios-background)] text-[var(--ios-text-secondary)]"
-                            : "bg-[var(--ios-blue-light)] text-[var(--ios-blue)]"
+                        ${selectedAnswers.length === 0
+                          ? "bg-[var(--ios-background)] text-[var(--ios-text-secondary)]"
+                          : "bg-[var(--ios-blue-light)] text-[var(--ios-blue)]"
                         }`}
                     >
                       Submit
@@ -788,7 +761,7 @@ function App() {
             <Dialog.Overlay className="fixed inset-0 bg-black/50" />
             <Dialog.Content className="fixed bottom-[100px] left-1/2 -translate-x-1/2 w-[90%] max-w-md p-6 rounded-[18px] bg-[var(--ios-card-background)] border border-[var(--ios-border)] shadow-lg text-[var(--ios-text)]">
               <Dialog.Title className="text-[22px] mb-4">Settings</Dialog.Title>
-              
+
               <div className="space-y-4 mb-3">
                 <div>
                   <label className="text-[15px] text-[var(--ios-text-secondary)]">
@@ -807,7 +780,7 @@ function App() {
                     </div>
                   </button>
                 </div>
-                
+
                 <div>
                   <label className="text-[15px] text-[var(--ios-text-secondary)]">
                     Test Question Count
@@ -843,7 +816,7 @@ function App() {
                   </button>
                   <button
                     onClick={() => {
-                      createNewSession(questions.length, false);
+                      createNewSession(questions.length, false, false);
                       setIsSettingsOpen(false);
                     }}
                     className="w-full py-3 rounded-[14px] bg-[var(--ios-green-light)] text-[var(--ios-green)] text-[17px]"
